@@ -8,14 +8,19 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
+      background: linear-gradient(135deg, rgba(252, 213, 206, 0.6), rgba(250, 225, 221, 0.6), rgba(248, 237, 235, 0.6));
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    nav, header, section, footer {
+      backdrop-filter: blur(12px);
+      background-color: rgba(255, 255, 255, 0.4);
+      transition: background-color 0.3s ease;
     }
   </style>
 </head>
 <body class="text-gray-800">
   <!-- Navigation -->
-  <nav class="bg-pink-200 px-4 py-3 shadow-md rounded-b-2xl">
+  <nav class="px-4 py-3 shadow-md rounded-b-2xl">
     <div class="flex items-center justify-between max-w-6xl mx-auto">
       <div class="text-xl font-bold">AVA's Birthday</div>
       <div class="md:hidden">
@@ -47,7 +52,7 @@
     });
   </script>
 
-  <header id="home" class="text-center py-10 px-4 bg-pink-200 rounded-2xl m-4 shadow-lg">
+  <header id="home" class="text-center py-10 px-4 rounded-2xl m-4 shadow-lg">
     <h1 class="text-4xl font-bold mb-2">You're Invited!</h1>
     <h2 class="text-2xl font-semibold">AVA's 2nd Birthday</h2>
     <p class="mt-4"><strong>Date:</strong> July 13, 2025</p>
@@ -118,7 +123,7 @@
     </script>
   </section>
 
-  <footer class="text-center p-4 bg-pink-100 mt-8 rounded-t-2xl">
+  <footer class="text-center p-4 mt-8 rounded-t-2xl">
     <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
   </footer>
 </body>
