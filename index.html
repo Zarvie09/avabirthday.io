@@ -1,23 +1,43 @@
----
-title: "AVA's 2nd Birthday"
-date: 2025-07-13T11:30:00
-location: "AVA's Residential House"
-address: "Bago Grande Subd., Panay, Capiz"
-contact_email: "delatorremylyn22@gmail.com"
-contact_number: "09317799007"
-motiff: "Light Brown, Brown, Wooden Brown"
-latitude: 11.511096
-longitude: 122.772199
----
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
-  <link rel="stylesheet" href="/css/style.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f3eee8;
+    }
+    .hero {
+      background: linear-gradient(to right, #d2b48c, #a0522d, #8b4513);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+      border-radius: 1rem;
+      margin: 1rem;
+    }
+    .gallery img, .gallery video {
+      width: 100%;
+      border-radius: 1rem;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      background-color: #8b4513;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 1rem;
+    }
+    .btn:hover {
+      background-color: #a0522d;
+    }
+    .countdown {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+    }
+  </style>
 </head>
 <body>
   <header class="hero">
@@ -25,49 +45,84 @@ longitude: 122.772199
     <h2>AVA's 2nd Birthday</h2>
     <p><strong>Date:</strong> July 13, 2025</p>
     <p><strong>Time:</strong> 11:30 AM</p>
-    <p><strong>Location:</strong> {{ .location }} - {{ .address }}</p>
-    <p><strong>Motiff:</strong> {{ .motiff }}</p>
+    <p><strong>Location:</strong> AVA's Residential House - Bago Grande Subd., Panay, Capiz</p>
+    <p><strong>Motiff:</strong> Light Brown, Brown, Wooden Brown</p>
+    <div id="countdown" class="countdown"></div>
   </header>
 
-  <section class="media">
+  <section class="container my-4">
     <h3>Gallery</h3>
-    <div class="gallery">
-      <!-- Add multimedia items -->
-      <img src="/images/ava1.jpg" alt="AVA's photo 1">
-      <video controls>
-        <source src="/videos/intro.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="/images/ava1.jpg" class="d-block w-100" alt="AVA photo">
+        </div>
+        <div class="carousel-item">
+          <video class="d-block w-100" controls>
+            <source src="/videos/intro.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      </button>
     </div>
   </section>
 
-  <section class="rsvp">
+  <section class="container my-4">
     <h3>RSVP</h3>
     <p>Please reserve your seat by filling out the form below:</p>
     <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="btn">RSVP Now</a>
   </section>
 
-  <section class="map">
+  <section class="container my-4">
     <h3>How to Get There</h3>
     <div id="map" style="width: 100%; height: 300px;"></div>
     <script>
       function initMap() {
-        var location = { lat: {{ .latitude }}, lng: {{ .longitude }} };
+        var location = { lat: 11.511096, lng: 122.772199 };
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 15,
           center: location
         });
-        var marker = new google.maps.Marker({
-          position: location,
-          map: map
-        });
+        new google.maps.Marker({ position: location, map: map });
       }
-      window.onload = initMap;
+      window.onload = function() {
+        initMap();
+        countdownTimer();
+      };
+
+      function countdownTimer() {
+        const targetDate = new Date("July 13, 2025 11:30:00").getTime();
+        const timer = setInterval(() => {
+          const now = new Date().getTime();
+          const distance = targetDate - now;
+
+          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+          document.getElementById("countdown").innerHTML =
+            `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+          if (distance < 0) {
+            clearInterval(timer);
+            document.getElementById("countdown").innerHTML = "The event has started!";
+          }
+        }, 1000);
+      }
     </script>
   </section>
 
-  <footer>
-    <p>Contact us: <a href="mailto:{{ .contact_email }}">{{ .contact_email }}</a> | {{ .contact_number }}</p>
+  <footer class="text-center p-4 bg-light mt-4">
+    <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com">delatorremylyn22@gmail.com</a> | 09317799007</p>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
