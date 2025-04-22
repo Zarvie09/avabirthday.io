@@ -1,112 +1,73 @@
+---
+title: "AVA's 2nd Birthday"
+date: 2025-07-13T11:30:00
+location: "AVA's Residential House"
+address: "Bago Grande Subd., Panay, Capiz"
+contact_email: "delatorremylyn22@gmail.com"
+contact_number: "09317799007"
+motiff: "Light Brown, Brown, Wooden Brown"
+latitude: 11.511096
+longitude: 122.772199
+---
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Join us in celebrating Ava's 2nd Birthday! All event details, RSVP, directions and theme info inside." />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background-color: #f8f3ed;
-      color: #5b4b3a;
-      line-height: 1.6;
-    }
-    header {
-      background: #a68960;
-      color: white;
-      text-align: center;
-      padding: 2rem;
-      border-bottom: 5px solid #7a5f3c;
-    }
-    section {
-      padding: 2rem;
-      max-width: 900px;
-      margin: auto;
-    }
-    .hero {
-      background-image: url('https://images.unsplash.com/photo-1529753257702-611b32d4e4b3');
-      background-size: cover;
-      background-position: center;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2rem;
-      font-weight: 700;
-      text-shadow: 2px 2px 4px #000;
-    }
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    .map {
-      width: 100%;
-      height: 300px;
-      margin: 1rem 0;
-    }
-    .rsvp-btn {
-      background: #7a5f3c;
-      color: white;
-      padding: 1rem 2rem;
-      border: none;
-      text-decoration: none;
-      font-size: 1rem;
-      margin-top: 1rem;
-      display: inline-block;
-    }
-    @media (max-width: 768px) {
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
 </head>
 <body>
-  <header>
-    <h1>You're Invited to</h1>
+  <header class="hero">
+    <h1>You're Invited!</h1>
     <h2>AVA's 2nd Birthday</h2>
+    <p><strong>Date:</strong> July 13, 2025</p>
+    <p><strong>Time:</strong> 11:30 AM</p>
+    <p><strong>Location:</strong> {{ .location }} - {{ .address }}</p>
+    <p><strong>Motiff:</strong> {{ .motiff }}</p>
   </header>
 
-  <div class="hero">
-    Celebrate with Joy & Love!
-  </div>
-
-  <section>
-    <h3>Event Details</h3>
-    <div class="info-grid">
-      <div>
-        <p><strong>Date:</strong> Sunday, July 13, 2025</p>
-        <p><strong>Time:</strong> 11:30 AM</p>
-        <p><strong>Location:</strong> AVA's Residential House</p>
-        <p><strong>Address:</strong> Bago Grande Subd., Panay, Capiz</p>
-        <p><strong>Motif:</strong> Light Brown, Brown, Wooden Brown</p>
-        <p><strong>Attire:</strong> Smart Casual (motif colors appreciated)</p>
-        <p><strong>Contact Email:</strong> delatorremylyn22@gmail.com</p>
-        <p><strong>Contact Number:</strong> 0931 779 9007</p>
-      </div>
-      <div>
-        <iframe class="map" frameborder="0" style="border:0" allowfullscreen
-          src="https://maps.google.com/maps?q=11.511096,122.772199&hl=en&z=15&output=embed"></iframe>
-        <a class="rsvp-btn" href="https://forms.gle/YOUR_GOOGLE_FORM_LINK" target="_blank">RSVP Now</a>
-      </div>
+  <section class="media">
+    <h3>Gallery</h3>
+    <div class="gallery">
+      <!-- Add multimedia items -->
+      <img src="/images/ava1.jpg" alt="AVA's photo 1">
+      <video controls>
+        <source src="/videos/intro.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
-  <section>
-    <h3>Seating & Reservation</h3>
-    <p>Please confirm your attendance early so we can reserve your seat and prepare accordingly. Each guest will receive a table assignment upon arrival.</p>
-    <p>For group reservations or seating requests, feel free to include your preferences in the RSVP form.</p>
+  <section class="rsvp">
+    <h3>RSVP</h3>
+    <p>Please reserve your seat by filling out the form below:</p>
+    <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="btn">RSVP Now</a>
   </section>
 
-  <footer style="text-align: center; padding: 1rem; font-size: 0.9rem; color: #888;">
-    © 2025 Ava's 2nd Birthday Celebration | Made with ♥ by the Delatorre Family
+  <section class="map">
+    <h3>How to Get There</h3>
+    <div id="map" style="width: 100%; height: 300px;"></div>
+    <script>
+      function initMap() {
+        var location = { lat: {{ .latitude }}, lng: {{ .longitude }} };
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 15,
+          center: location
+        });
+        var marker = new google.maps.Marker({
+          position: location,
+          map: map
+        });
+      }
+      window.onload = initMap;
+    </script>
+  </section>
+
+  <footer>
+    <p>Contact us: <a href="mailto:{{ .contact_email }}">{{ .contact_email }}</a> | {{ .contact_number }}</p>
   </footer>
 </body>
 </html>
