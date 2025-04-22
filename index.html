@@ -89,13 +89,11 @@
       </div>
     </div>
   </section>
-
   <section class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
     <h3 class="text-xl font-semibold mb-4">RSVP</h3>
     <p class="mb-2">Please reserve your seat by filling out the form below:</p>
     <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="inline-block bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition">RSVP Now</a>
   </section>
-
   <section id="location" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
     <h3 class="text-xl font-semibold mb-4">How to Get There</h3>
     <div class="w-full h-72 rounded-2xl shadow-lg">
@@ -104,30 +102,25 @@
         frameborder="0" allowfullscreen></iframe>
     </div>
   </section>
-
   <footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
     <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
   </footer>
-
   <script>
    function countdownTimer() {
   const targetDate = new Date("July 13, 2025 11:30:00").getTime();
   const timer = setInterval(() => {
     const now = new Date().getTime();
     const distance = targetDate - now;
-
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
     document.getElementById("countdown").innerHTML = `
       <div>📅 <span class="text-pink-700">${days}</span> days</div>
       <div>⏰ <span class="text-pink-700">${hours}</span> hrs</div>
       <div>🕐 <span class="text-pink-700">${minutes}</span> mins</div>
       <div>⏳ <span class="text-pink-700">${seconds}</span> secs</div>
     `;
-
     if (distance < 0) {
       clearInterval(timer);
       document.getElementById("countdown").innerHTML = "🎉 The event has started!";
