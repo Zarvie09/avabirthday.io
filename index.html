@@ -71,9 +71,10 @@
     <p><strong>Time:</strong> 11:30 AM</p>
     <p><strong>Location:</strong> AVA's Residential House - Bago Grande Subd., Panay, Capiz</p>
     <p id="motiff"><strong>Motiff:</strong> Light Brown, Brown, Wooden Brown</p>
-    <div id="countdown" class="mt-4 text-lg font-semibold"></div>
+    <div id="countdown" class="mt-4 text-lg font-semibold flex justify-center gap-4">
+  <!-- JS will populate this -->
+    </div>
   </header>
-
   <section id="event" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
     <h3 class="text-xl font-semibold mb-4">Gallery</h3>
     <div class="relative w-full overflow-hidden rounded-2xl shadow-md">
@@ -109,27 +110,30 @@
   </footer>
 
   <script>
-    function countdownTimer() {
-      const targetDate = new Date("July 13, 2025 11:30:00").getTime();
-      const timer = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = targetDate - now;
+   function countdownTimer() {
+  const targetDate = new Date("July 13, 2025 11:30:00").getTime();
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
 
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        document.getElementById("countdown").innerHTML =
-          `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+    document.getElementById("countdown").innerHTML = `
+      <div>📅 <span class="text-pink-700">${days}</span> days</div>
+      <div>⏰ <span class="text-pink-700">${hours}</span> hrs</div>
+      <div>🕐 <span class="text-pink-700">${minutes}</span> mins</div>
+      <div>⏳ <span class="text-pink-700">${seconds}</span> secs</div>
+    `;
 
-        if (distance < 0) {
-          clearInterval(timer);
-          document.getElementById("countdown").innerHTML = "The event has started!";
-        }
-      }, 1000);
+    if (distance < 0) {
+      clearInterval(timer);
+      document.getElementById("countdown").innerHTML = "🎉 The event has started!";
     }
-
+  }, 1000);
+}
     window.onload = countdownTimer;
   </script>
 </body>
