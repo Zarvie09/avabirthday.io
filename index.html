@@ -4,23 +4,28 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
-  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
-      background: linear-gradient(135deg, rgba(252, 213, 206, 0.6), rgba(250, 225, 221, 0.6), rgba(248, 237, 235, 0.6));
+      background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    nav, header, section, footer {
-      backdrop-filter: blur(12px);
-      background-color: rgba(255, 255, 255, 0.4);
-      transition: background-color 0.3s ease;
+    .bg-glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+    }
+    #mobile-menu {
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(-100%);
+    }
+    #mobile-menu.show {
+      transform: translateX(0);
     }
   </style>
 </head>
 <body class="text-gray-800">
   <!-- Navigation -->
-  <nav class="px-4 py-3 shadow-md rounded-b-2xl">
+  <nav class="bg-glass px-4 py-3 shadow-md rounded-b-2xl relative z-10">
     <div class="flex items-center justify-between max-w-6xl mx-auto">
       <div class="text-xl font-bold">AVA's Birthday</div>
       <div class="md:hidden">
@@ -37,7 +42,7 @@
         <a href="#motiff" class="hover:text-pink-700">Motiff</a>
       </div>
     </div>
-    <div id="mobile-menu" class="md:hidden hidden mt-2 space-y-2 text-center">
+    <div id="mobile-menu" class="absolute top-full left-0 w-full md:hidden bg-glass py-4 hidden flex-col space-y-2 text-center rounded-b-2xl">
       <a href="#home" class="block hover:text-pink-700">Home</a>
       <a href="#event" class="block hover:text-pink-700">Event</a>
       <a href="#location" class="block hover:text-pink-700">Location</a>
@@ -46,13 +51,20 @@
   </nav>
 
   <script>
-    document.getElementById('burger').addEventListener('click', () => {
-      const mobileMenu = document.getElementById('mobile-menu');
-      mobileMenu.classList.toggle('hidden');
+    const burger = document.getElementById('burger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    burger.addEventListener('click', () => {
+      if (mobileMenu.classList.contains('hidden')) {
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.classList.add('show');
+      } else {
+        mobileMenu.classList.remove('show');
+        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+      }
     });
   </script>
 
-  <header id="home" class="text-center py-10 px-4 rounded-2xl m-4 shadow-lg">
+  <header id="home" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
     <h1 class="text-4xl font-bold mb-2">You're Invited!</h1>
     <h2 class="text-2xl font-semibold">AVA's 2nd Birthday</h2>
     <p class="mt-4"><strong>Date:</strong> July 13, 2025</p>
@@ -62,7 +74,7 @@
     <div id="countdown" class="mt-4 text-lg font-semibold"></div>
   </header>
 
-  <section id="event" class="max-w-3xl mx-auto px-4 py-6">
+  <section id="event" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
     <h3 class="text-xl font-semibold mb-4">Gallery</h3>
     <div class="relative w-full overflow-hidden rounded-2xl shadow-md">
       <div class="carousel relative">
@@ -77,54 +89,48 @@
     </div>
   </section>
 
-  <section class="max-w-3xl mx-auto px-4 py-6">
+  <section class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
     <h3 class="text-xl font-semibold mb-4">RSVP</h3>
     <p class="mb-2">Please reserve your seat by filling out the form below:</p>
     <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="inline-block bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition">RSVP Now</a>
   </section>
 
-  <section id="location" class="max-w-3xl mx-auto px-4 py-6">
+  <section id="location" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
     <h3 class="text-xl font-semibold mb-4">How to Get There</h3>
-    <div id="map" class="w-full h-72 rounded-2xl shadow-lg"></div>
-    <script>
-      function initMap() {
-        var location = { lat: 11.511096, lng: 122.772199 };
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 15,
-          center: location
-        });
-        new google.maps.Marker({ position: location, map: map });
-      }
-      window.onload = function() {
-        initMap();
-        countdownTimer();
-      };
-
-      function countdownTimer() {
-        const targetDate = new Date("July 13, 2025 11:30:00").getTime();
-        const timer = setInterval(() => {
-          const now = new Date().getTime();
-          const distance = targetDate - now;
-
-          const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-          const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-          const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-          const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-          document.getElementById("countdown").innerHTML =
-            `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-          if (distance < 0) {
-            clearInterval(timer);
-            document.getElementById("countdown").innerHTML = "The event has started!";
-          }
-        }, 1000);
-      }
-    </script>
+    <div class="w-full h-72 rounded-2xl shadow-lg">
+      <iframe class="w-full h-full rounded-2xl" 
+        src="https://maps.google.com/maps?q=11.511096,122.772199&z=15&output=embed" 
+        frameborder="0" allowfullscreen></iframe>
+    </div>
   </section>
 
-  <footer class="text-center p-4 mt-8 rounded-t-2xl">
+  <footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
     <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
   </footer>
+
+  <script>
+    function countdownTimer() {
+      const targetDate = new Date("July 13, 2025 11:30:00").getTime();
+      const timer = setInterval(() => {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("countdown").innerHTML =
+          `Countdown: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+        if (distance < 0) {
+          clearInterval(timer);
+          document.getElementById("countdown").innerHTML = "The event has started!";
+        }
+      }, 1000);
+    }
+
+    window.onload = countdownTimer;
+  </script>
 </body>
 </html>
