@@ -8,7 +8,6 @@
 .flip-unit {
   text-align: center;
 }
-
 .flip-card-group {
   display: flex;
   gap: 5px;
@@ -47,13 +46,29 @@
   transition: transform 0.5s ease-in-out;
   transform: translateY(100%);
 }
-
 .label {
   margin-top: 0.5rem;
   font-size: 1rem;
   color: #555;
 }
 </style>
+    <style>
+    body {
+      background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .bg-glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+    }
+    #mobile-menu {
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(-100%);
+    }
+    #mobile-menu.show {
+      transform: translateX(0);
+    }
+  </style>
 </head>
 <body class="text-gray-800">
   <!-- Navigation -->
@@ -211,7 +226,6 @@ function countdownTimer() {
       }
     });
   }
-
   updateTimer();
   const timer = setInterval(updateTimer, 1000);
 }
