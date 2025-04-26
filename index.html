@@ -4,22 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
-  <style>
+ <style>
 .flip-unit {
   text-align: center;
 }
 
+.flip-card-group {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
 .flip-card {
   background: #fff;
-  color: #e11d48; /* Tailwind's pink-700 */
+  color: #e11d48; /* Tailwind pink-700 */
   font-size: 2.5rem;
   font-weight: bold;
-  width: 80px;
-  height: 100px;
-  line-height: 100px;
+  width: 50px;
+  height: 80px;
+  line-height: 80px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   transition: transform 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .flip-card.flip {
@@ -108,19 +117,31 @@
 </div>
   <div id="countdown" class="flipTimebox flex gap-4 justify-center">
   <div class="flip-unit">
-    <div class="flip-card" id="days">00</div>
+    <div class="flip-card-group" id="days">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
+    </div>
     <div class="label">Days</div>
   </div>
   <div class="flip-unit">
-    <div class="flip-card" id="hours">00</div>
+    <div class="flip-card-group" id="hours">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
+    </div>
     <div class="label">Hours</div>
   </div>
   <div class="flip-unit">
-    <div class="flip-card" id="minutes">00</div>
+    <div class="flip-card-group" id="minutes">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
+    </div>
     <div class="label">Minutes</div>
   </div>
   <div class="flip-unit">
-    <div class="flip-card" id="seconds">00</div>
+    <div class="flip-card-group" id="seconds">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
+    </div>
     <div class="label">Seconds</div>
   </div>
 </div>
@@ -173,28 +194,33 @@ function countdownTimer() {
       document.getElementById("countdown").innerHTML = "🎉 The event has started!";
       return;
     }
-    flipTo("days", days);
-    flipTo("hours", hours);
-    flipTo("minutes", minutes);
-    flipTo("seconds", seconds);
+
+    flipToDigits("days", days);
+    flipToDigits("hours", hours);
+    flipToDigits("minutes", minutes);
+    flipToDigits("seconds", seconds);
   };
 
-  function flipTo(id, newVal) {
-    const el = document.getElementById(id);
-    if (el.innerText !== newVal.toString().padStart(2, "0")) {
-      el.classList.add("flip");
-      setTimeout(() => {
-        el.innerText = newVal.toString().padStart(2, "0");
-        el.classList.remove("flip");
-      }, 250);
-    }
+  function flipToDigits(groupId, value) {
+    const group = document.getElementById(groupId);
+    const digits = value.toString().padStart(2, "0").split('');
+
+    group.querySelectorAll(".flip-card").forEach((card, index) => {
+      if (card.innerText !== digits[index]) {
+        card.classList.add("flip");
+        setTimeout(() => {
+          card.innerText = digits[index];
+          card.classList.remove("flip");
+        }, 250);
+      }
+    });
   }
+
   updateTimer();
   const timer = setInterval(updateTimer, 1000);
 }
 
 window.onload = countdownTimer;
 </script>
-
 </body>
 </html>
