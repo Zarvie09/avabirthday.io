@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
- <style>
+<style>
 .flip-unit {
   text-align: center;
 }
@@ -25,14 +25,27 @@
   line-height: 80px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-  transition: transform 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.flip-card::before {
+  content: attr(data-prev);
+  position: absolute;
+  top: -100%;
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.flip-card.flip {
-  transform: rotateX(360deg);
+.flip-card.slide {
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(100%);
 }
 
 .label {
@@ -41,24 +54,6 @@
   color: #555;
 }
 </style>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .bg-glass {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-    }
-    #mobile-menu {
-      transition: transform 0.3s ease-in-out;
-      transform: translateX(-100%);
-    }
-    #mobile-menu.show {
-      transform: translateX(0);
-    }
-  </style>
 </head>
 <body class="text-gray-800">
   <!-- Navigation -->
@@ -115,7 +110,7 @@
     <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
   </p>
 </div>
-  <div id="countdown" class="flipTimebox flex gap-4 justify-center">
+<div id="countdown" class="flipTimebox flex gap-4 justify-center">
   <div class="flip-unit">
     <div class="flip-card-group" id="days">
       <div class="flip-card">0</div>
@@ -195,23 +190,24 @@ function countdownTimer() {
       return;
     }
 
-    flipToDigits("days", days);
-    flipToDigits("hours", hours);
-    flipToDigits("minutes", minutes);
-    flipToDigits("seconds", seconds);
+    slideToDigits("days", days);
+    slideToDigits("hours", hours);
+    slideToDigits("minutes", minutes);
+    slideToDigits("seconds", seconds);
   };
 
-  function flipToDigits(groupId, value) {
+  function slideToDigits(groupId, value) {
     const group = document.getElementById(groupId);
     const digits = value.toString().padStart(2, "0").split('');
 
     group.querySelectorAll(".flip-card").forEach((card, index) => {
       if (card.innerText !== digits[index]) {
-        card.classList.add("flip");
+        card.setAttribute('data-prev', card.innerText); // Set previous number
+        card.innerText = digits[index];
+        card.classList.add("slide");
         setTimeout(() => {
-          card.innerText = digits[index];
-          card.classList.remove("flip");
-        }, 250);
+          card.classList.remove("slide");
+        }, 500); // match the CSS transition duration
       }
     });
   }
@@ -219,7 +215,6 @@ function countdownTimer() {
   updateTimer();
   const timer = setInterval(updateTimer, 1000);
 }
-
 window.onload = countdownTimer;
 </script>
 </body>
