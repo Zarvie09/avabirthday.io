@@ -4,6 +4,43 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
+  <style>
+.flip-unit {
+  text-align: center;
+}
+
+.flip-card-group {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.flip-card {
+  background: #fff;
+  color: #e11d48; /* Tailwind pink-700 */
+  font-size: 2.5rem;
+  font-weight: bold;
+  width: 50px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  transition: transform 0.5s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-card.flip {
+  transform: rotateX(360deg);
+}
+
+.label {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  color: #555;
+}
+</style>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -78,9 +115,36 @@
     <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
   </p>
 </div>
-    <div id="countdown" class="mt-4 text-lg font-semibold flex justify-center gap-4">
-  <!-- JS will populate this -->
+  <div id="countdown" class="flipTimebox flex gap-4 justify-center">
+  <div class="flip-unit">
+    <div class="flip-card-group" id="days">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
     </div>
+    <div class="label">Days</div>
+  </div>
+  <div class="flip-unit">
+    <div class="flip-card-group" id="hours">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
+    </div>
+    <div class="label">Hours</div>
+  </div>
+  <div class="flip-unit">
+    <div class="flip-card-group" id="minutes">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
+    </div>
+    <div class="label">Minutes</div>
+  </div>
+  <div class="flip-unit">
+    <div class="flip-card-group" id="seconds">
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
+    </div>
+    <div class="label">Seconds</div>
+  </div>
+</div>
   </header>
   <section id="event" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
     <h3 class="text-xl font-semibold mb-4">Gallery</h3>
@@ -112,29 +176,52 @@
   <footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
     <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
   </footer>
-  <script>
-   function countdownTimer() {
+<script>
+function countdownTimer() {
   const targetDate = new Date("July 13, 2025 11:30:00").getTime();
-  const timer = setInterval(() => {
+
+  const updateTimer = () => {
     const now = new Date().getTime();
     const distance = targetDate - now;
-    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    document.getElementById("countdown").innerHTML = `
-      <div>📅 <span class="text-pink-700">${days}</span> days</div>
-      <div>⏰ <span class="text-pink-700">${hours}</span> hrs</div>
-      <div>🕐 <span class="text-pink-700">${minutes}</span> mins</div>
-      <div>⏳ <span class="text-pink-700">${seconds}</span> secs</div>
-    `;
+
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
     if (distance < 0) {
       clearInterval(timer);
       document.getElementById("countdown").innerHTML = "🎉 The event has started!";
+      return;
     }
-  }, 1000);
+
+    flipToDigits("days", days);
+    flipToDigits("hours", hours);
+    flipToDigits("minutes", minutes);
+    flipToDigits("seconds", seconds);
+  };
+
+  function flipToDigits(groupId, value) {
+    const group = document.getElementById(groupId);
+    const digits = value.toString().padStart(2, "0").split('');
+
+    group.querySelectorAll(".flip-card").forEach((card, index) => {
+      if (card.innerText !== digits[index]) {
+        card.classList.add("flip");
+        setTimeout(() => {
+          card.innerText = digits[index];
+          card.classList.remove("flip");
+        }, 250);
+      }
+    });
+  }
+
+  updateTimer();
+  const timer = setInterval(updateTimer, 1000);
 }
-    window.onload = countdownTimer;
-  </script>
+
+window.onload = countdownTimer;
+</script>
+
 </body>
 </html>
