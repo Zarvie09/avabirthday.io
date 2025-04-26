@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -10,54 +10,16 @@
       background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-
     .bg-glass {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
     }
-
     #mobile-menu {
       transition: transform 0.3s ease-in-out;
       transform: translateX(-100%);
     }
-
     #mobile-menu.show {
       transform: translateX(0);
-    }
-
-    .flip-card-group {
-      perspective: 1000px;
-    }
-
-    .flip-inner {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      transition: transform 1s ease-in-out;
-      transform-style: preserve-3d;
-      position: relative;
-      height: 100%;
-    }
-
-    .flip-inner span {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      backface-visibility: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 2.5rem;
-      font-weight: bold;
-      color: #e11d48;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .flip-inner span:last-child {
-      transform: rotateX(180deg);
     }
   </style>
 </head>
@@ -68,7 +30,7 @@
       <div class="text-xl font-bold">AVA's Birthday</div>
       <div class="md:hidden">
         <button id="burger" class="focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
@@ -77,14 +39,14 @@
         <a href="#home" class="hover:text-pink-700">Home</a>
         <a href="#event" class="hover:text-pink-700">Event</a>
         <a href="#location" class="hover:text-pink-700">Location</a>
-        <a href="#rsvp" class="hover:text-pink-700">RSVP</a>
+        <a href="#motiff" class="hover:text-pink-700">Motiff</a>
       </div>
     </div>
     <div id="mobile-menu" class="absolute top-full left-0 w-full md:hidden bg-glass py-4 hidden flex-col space-y-2 text-center rounded-b-2xl">
       <a href="#home" class="block hover:text-pink-700">Home</a>
       <a href="#event" class="block hover:text-pink-700">Event</a>
       <a href="#location" class="block hover:text-pink-700">Location</a>
-      <a href="#rsvp" class="block hover:text-pink-700">RSVP</a>
+      <a href="#motiff" class="block hover:text-pink-700">Motiff</a>
     </div>
   </nav>
 
@@ -102,91 +64,77 @@
     });
   </script>
 
-  <!-- Event Info and Countdown -->
   <header id="home" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
     <h1 class="text-4xl font-bold mb-2">You're Invited!</h1>
     <h2 class="text-2xl font-semibold">AVA's 2nd Birthday</h2>
     <p class="mt-4"><strong>Date:</strong> July 13, 2025</p>
     <p><strong>Time:</strong> 11:30 AM</p>
     <p><strong>Location:</strong> AVA's Residential House - Bago Grande Subd., Panay, Capiz</p>
-    <p id="motiff" class="flex justify-center mt-4 items-center gap-2">
-      <strong>Motiff:</strong>
-      <span class="w-5 h-5 rounded-full" style="background-color: #f5deb3;" title="Light Brown"></span>
-      <span class="w-5 h-5 rounded-full" style="background-color: #a52a2a;" title="Brown"></span>
-      <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
-    </p>
-
-    <!-- Countdown -->
-    <div id="countdown" class="mt-6 text-lg font-semibold flex justify-center gap-6 flex-wrap">
-      <div class="text-center">
-        <div class="flip-card-group" id="d1"><div class="flip-inner"><span>0</span></div></div>
-        <p class="mt-2 text-sm text-gray-600">Days</p>
-      </div>
-      <div class="text-center">
-        <div class="flip-card-group" id="h1"><div class="flip-inner"><span>0</span></div></div>
-        <p class="mt-2 text-sm text-gray-600">Hours</p>
-      </div>
-      <div class="text-center">
-        <div class="flip-card-group" id="m1"><div class="flip-inner"><span>0</span></div></div>
-        <p class="mt-2 text-sm text-gray-600">Minutes</p>
-      </div>
-      <div class="text-center">
-        <div class="flip-card-group" id="s1"><div class="flip-inner"><span>0</span></div></div>
-        <p class="mt-2 text-sm text-gray-600">Seconds</p>
-      </div>
+    <div class="flex justify-center mt-4">
+  <p id="motiff" class="flex items-center gap-2">
+    <strong>Motiff:</strong>
+    <span class="w-5 h-5 rounded-full" style="background-color: #f5deb3;" title="Light Brown"></span>
+    <span class="w-5 h-5 rounded-full" style="background-color: #a52a2a;" title="Brown"></span>
+    <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
+  </p>
+</div>
+    <div id="countdown" class="mt-4 text-lg font-semibold flex justify-center gap-4">
+  <!-- JS will populate this -->
     </div>
   </header>
-
-  <!-- Google Map Section -->
-  <section id="location" class="bg-glass m-4 p-6 rounded-2xl shadow-lg">
-    <h3 class="text-2xl font-semibold text-center mb-4">📍 Location</h3>
-    <div class="w-full h-96">
-      <iframe
-        width="100%"
-        height="100%"
-        style="border:0; border-radius: 12px;"
-        loading="lazy"
-        allowfullscreen
-        src="https://www.google.com/maps/embed/v1/place?q=Bago+Grande+Subdivision,+Panay,+Capiz&key=YOUR_GOOGLE_MAPS_API_KEY">
-      </iframe>
+  <section id="event" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
+    <h3 class="text-xl font-semibold mb-4">Gallery</h3>
+    <div class="relative w-full overflow-hidden rounded-2xl shadow-md">
+      <div class="carousel relative">
+        <div class="carousel-inner">
+          <img src="/images/ava1.jpg" class="w-full h-auto rounded-2xl" alt="AVA photo">
+          <video class="w-full mt-4 rounded-2xl" controls>
+            <source src="/videos/intro.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
     </div>
   </section>
-
-  <!-- RSVP Section -->
-  <section id="rsvp" class="bg-glass m-4 p-6 rounded-2xl shadow-lg">
-    <h3 class="text-2xl font-semibold text-center mb-4">🎉 RSVP Now!</h3>
-    <form class="max-w-xl mx-auto space-y-4">
-      <input type="text" placeholder="Your Name" class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-400" required>
-      <input type="number" placeholder="Number of Guests" class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-400" required>
-      <textarea placeholder="Your Message (optional)" rows="3" class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-400"></textarea>
-      <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md">Submit RSVP</button>
-    </form>
+  <section class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
+    <h3 class="text-xl font-semibold mb-4">RSVP</h3>
+    <p class="mb-2">Please reserve your seat by filling out the form below:</p>
+    <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="inline-block bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition">RSVP Now</a>
   </section>
-
-  <!-- Countdown Script -->
+  <section id="location" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
+    <h3 class="text-xl font-semibold mb-4">How to Get There</h3>
+    <div class="w-full h-72 rounded-2xl shadow-lg">
+      <iframe class="w-full h-full rounded-2xl" 
+        src="https://maps.google.com/maps?q=11.511096,122.772199&z=15&output=embed" 
+        frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+  <footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
+    <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
+  </footer>
   <script>
-    function countdownTimer() {
-      const targetDate = new Date("July 13, 2025 11:30:00").getTime();
-      const update = () => {
-        const now = new Date().getTime();
-        const diff = targetDate - now;
-        if (diff < 0) return;
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / (1000 * 60)) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-
-        document.querySelector("#d1 .flip-inner span").textContent = String(days).padStart(2, '0');
-        document.querySelector("#h1 .flip-inner span").textContent = String(hours).padStart(2, '0');
-        document.querySelector("#m1 .flip-inner span").textContent = String(minutes).padStart(2, '0');
-        document.querySelector("#s1 .flip-inner span").textContent = String(seconds).padStart(2, '0');
-      };
-
-      setInterval(update, 1000);
+   function countdownTimer() {
+  const targetDate = new Date("July 13, 2025 11:30:00").getTime();
+  const timer = setInterval(() => {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    document.getElementById("countdown").innerHTML = `
+      <div>📅 <span class="text-pink-700">${days}</span> days</div>
+      <div>⏰ <span class="text-pink-700">${hours}</span> hrs</div>
+      <div>🕐 <span class="text-pink-700">${minutes}</span> mins</div>
+      <div>⏳ <span class="text-pink-700">${seconds}</span> secs</div>
+    `;
+    if (distance < 0) {
+      clearInterval(timer);
+      document.getElementById("countdown").innerHTML = "🎉 The event has started!";
     }
-
-    countdownTimer();
+  }, 1000);
+}
+    window.onload = countdownTimer;
   </script>
 </body>
 </html>
