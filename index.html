@@ -4,43 +4,93 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AVA's 2nd Birthday Invitation</title>
-<style>
-.flip-unit {
-  text-align: center;
-}
+ <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9fafb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      padding: 20px;
+    }
 
-.flip-card-group {
-  display: flex;
-  gap: 5px;
-  justify-content: center;
-}
+    .countdown {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+      background: #fff;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
 
-.flip-card {
-  background: #fff;
-  color: #e11d48; /* Tailwind pink-700 */
-  font-size: 2.5rem;
-  font-weight: bold;
-  width: 50px;
-  height: 80px;
-  line-height: 80px;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-  transition: transform 0.5s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+    .flip-unit {
+      text-align: center;
+    }
 
-.flip-card.flip {
-  transform: rotateX(360deg);
-}
+    .flip-card-group {
+      width: 50px;
+      height: 80px;
+      background: #fff;
+      color: #e11d48;
+      font-size: 2.5rem;
+      font-weight: bold;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
 
-.label {
-  margin-top: 0.5rem;
-  font-size: 1rem;
-  color: #555;
-}
-</style>
+    .flip-inner {
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.5s ease-in-out;
+      transform: translateY(0);
+    }
+
+    .flip-inner span {
+      height: 80px;
+      line-height: 80px;
+      display: block;
+      text-align: center;
+    }
+
+    .label {
+      width: 100%;
+      text-align: center;
+      margin-top: 0.5rem;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .label-group {
+      width: 100%;
+      text-align: center;
+      margin-top: 1rem;
+      display: flex;
+      justify-content: space-between;
+      max-width: 400px;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 640px) {
+      .flip-card-group {
+        width: 40px;
+        height: 65px;
+        font-size: 2rem;
+      }
+      .flip-inner span {
+        height: 65px;
+        line-height: 65px;
+      }
+    }
+  </style>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body {
@@ -113,35 +163,19 @@
     <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
   </p>
 </div>
-<div id="countdown" class="flipTimebox flex gap-4 justify-center">
-  <div class="flip-unit">
-    <div class="flip-card-group" id="days">
-      <div class="flip-card">0</div>
-      <div class="flip-card">0</div>
-    </div>
-    <div class="label">Days</div>
-  </div>
-  <div class="flip-unit">
-    <div class="flip-card-group" id="hours">
-      <div class="flip-card">0</div>
-      <div class="flip-card">0</div>
-    </div>
-    <div class="label">Hours</div>
-  </div>
-  <div class="flip-unit">
-    <div class="flip-card-group" id="minutes">
-      <div class="flip-card">0</div>
-      <div class="flip-card">0</div>
-    </div>
-    <div class="label">Minutes</div>
-  </div>
-  <div class="flip-unit">
-    <div class="flip-card-group" id="seconds">
-      <div class="flip-card">0</div>
-      <div class="flip-card">0</div>
-    </div>
-    <div class="label">Seconds</div>
-  </div>
+<div class="countdown" id="countdown">
+  <!-- 8 digit boxes -->
+  <div class="flip-unit"><div class="flip-card-group" id="d1"><div class="flip-inner"><span>0</span></div></div></div>
+  <div class="flip-unit"><div class="flip-card-group" id="d2"><div class="flip-inner"><span>0</span></div></div></div>
+  
+  <div class="flip-unit"><div class="flip-card-group" id="h1"><div class="flip-inner"><span>0</span></div></div></div>
+  <div class="flip-unit"><div class="flip-card-group" id="h2"><div class="flip-inner"><span>0</span></div></div></div>
+
+  <div class="flip-unit"><div class="flip-card-group" id="m1"><div class="flip-inner"><span>0</span></div></div></div>
+  <div class="flip-unit"><div class="flip-card-group" id="m2"><div class="flip-inner"><span>0</span></div></div></div>
+
+  <div class="flip-unit"><div class="flip-card-group" id="s1"><div class="flip-inner"><span>0</span></div></div></div>
+  <div class="flip-unit"><div class="flip-card-group" id="s2"><div class="flip-inner"><span>0</span></div></div></div>
 </div>
   </header>
   <section id="event" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
@@ -182,36 +216,49 @@ function countdownTimer() {
     const now = new Date().getTime();
     const distance = targetDate - now;
 
-    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
     if (distance < 0) {
       clearInterval(timer);
       document.getElementById("countdown").innerHTML = "🎉 The event has started!";
       return;
     }
 
-    flipToDigits("days", days);
-    flipToDigits("hours", hours);
-    flipToDigits("minutes", minutes);
-    flipToDigits("seconds", seconds);
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    days = String(days).padStart(2, '0');
+    hours = String(hours).padStart(2, '0');
+    minutes = String(minutes).padStart(2, '0');
+    seconds = String(seconds).padStart(2, '0');
+
+    updateUnit('d1', days[0]);
+    updateUnit('d2', days[1]);
+    updateUnit('h1', hours[0]);
+    updateUnit('h2', hours[1]);
+    updateUnit('m1', minutes[0]);
+    updateUnit('m2', minutes[1]);
+    updateUnit('s1', seconds[0]);
+    updateUnit('s2', seconds[1]);
   };
 
-  function flipToDigits(groupId, value) {
-    const group = document.getElementById(groupId);
-    const digits = value.toString().padStart(2, "0").split('');
+  function updateUnit(id, value) {
+    const group = document.getElementById(id);
+    const inner = group.querySelector(".flip-inner");
 
-    group.querySelectorAll(".flip-card").forEach((card, index) => {
-      if (card.innerText !== digits[index]) {
-        card.classList.add("flip");
-        setTimeout(() => {
-          card.innerText = digits[index];
-          card.classList.remove("flip");
-        }, 250);
-      }
-    });
+    if (inner.querySelector("span").textContent !== value) {
+      const newSpan = document.createElement("span");
+      newSpan.textContent = value;
+      inner.appendChild(newSpan);
+
+      const unitHeight = group.clientHeight;
+      inner.style.transform = `translateY(-${unitHeight}px)`;
+
+      setTimeout(() => {
+        inner.innerHTML = `<span>${value}</span>`;
+        inner.style.transform = `translateY(0)`;
+      }, 500);
+    }
   }
 
   updateTimer();
@@ -220,5 +267,6 @@ function countdownTimer() {
 
 window.onload = countdownTimer;
 </script>
+
 </body>
 </html>
