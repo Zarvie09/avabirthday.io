@@ -2,20 +2,28 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>AVA's 2nd Birthday Invitation</title>
- <style>
+  
+  <!-- TailwindCSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Custom Styles -->
+  <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f9fafb;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
+      color: #333;
       margin: 0;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
     }
-
+    .bg-glass {
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+    }
     .countdown {
       display: flex;
       flex-wrap: wrap;
@@ -26,11 +34,9 @@
       border-radius: 16px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.1);
     }
-
     .flip-unit {
       text-align: center;
     }
-
     .flip-card-group {
       width: 50px;
       height: 80px;
@@ -46,38 +52,18 @@
       align-items: center;
       justify-content: center;
     }
-
     .flip-inner {
       display: flex;
       flex-direction: column;
       transition: transform 0.5s ease-in-out;
       transform: translateY(0);
     }
-
     .flip-inner span {
       height: 80px;
       line-height: 80px;
       display: block;
       text-align: center;
     }
-
-    .label {
-      width: 100%;
-      text-align: center;
-      margin-top: 0.5rem;
-      font-size: 0.9rem;
-      color: #555;
-    }
-
-    .label-group {
-      width: 100%;
-      text-align: center;
-      margin-top: 1rem;
-      display: flex;
-      justify-content: space-between;
-      max-width: 400px;
-    }
-
     /* Mobile adjustments */
     @media (max-width: 640px) {
       .flip-card-group {
@@ -90,17 +76,6 @@
         line-height: 65px;
       }
     }
-  </style>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <style>
-    body {
-      background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    .bg-glass {
-      background: rgba(255, 255, 255, 0.7);
-      backdrop-filter: blur(10px);
-    }
     #mobile-menu {
       transition: transform 0.3s ease-in-out;
       transform: translateX(-100%);
@@ -110,105 +85,123 @@
     }
   </style>
 </head>
+
 <body class="text-gray-800">
-  <!-- Navigation -->
-  <nav class="bg-glass px-4 py-3 shadow-md rounded-b-2xl relative z-10">
-    <div class="flex items-center justify-between max-w-6xl mx-auto">
-      <div class="text-xl font-bold">AVA's Birthday</div>
-      <div class="md:hidden">
-        <button id="burger" class="focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
-          </svg>
-        </button>
-      </div>
-      <div id="menu" class="hidden md:flex space-x-4 text-lg">
-        <a href="#home" class="hover:text-pink-700">Home</a>
-        <a href="#event" class="hover:text-pink-700">Event</a>
-        <a href="#location" class="hover:text-pink-700">Location</a>
-        <a href="#motiff" class="hover:text-pink-700">Motiff</a>
+
+<!-- Navigation -->
+<nav class="bg-glass px-4 py-3 shadow-md rounded-b-2xl relative z-10">
+  <div class="flex items-center justify-between max-w-6xl mx-auto">
+    <div class="text-xl font-bold">AVA's Birthday</div>
+    <div class="md:hidden">
+      <button id="burger" class="focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="menu" class="hidden md:flex space-x-4 text-lg">
+      <a href="#home" class="hover:text-pink-700">Home</a>
+      <a href="#event" class="hover:text-pink-700">Event</a>
+      <a href="#location" class="hover:text-pink-700">Location</a>
+      <a href="#motiff" class="hover:text-pink-700">Motiff</a>
+    </div>
+  </div>
+  <div id="mobile-menu" class="absolute top-full left-0 w-full md:hidden bg-glass py-4 hidden flex-col space-y-2 text-center rounded-b-2xl">
+    <a href="#home" class="block hover:text-pink-700">Home</a>
+    <a href="#event" class="block hover:text-pink-700">Event</a>
+    <a href="#location" class="block hover:text-pink-700">Location</a>
+    <a href="#motiff" class="block hover:text-pink-700">Motiff</a>
+  </div>
+</nav>
+
+<!-- Burger Menu Script -->
+<script>
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  burger.addEventListener('click', () => {
+    if (mobileMenu.classList.contains('hidden')) {
+      mobileMenu.classList.remove('hidden');
+      mobileMenu.classList.add('show');
+    } else {
+      mobileMenu.classList.remove('show');
+      setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+    }
+  });
+</script>
+
+<!-- Header -->
+<header id="home" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
+  <h1 class="text-4xl font-bold mb-2">You're Invited!</h1>
+  <h2 class="text-2xl font-semibold">AVA's 2nd Birthday</h2>
+  <p class="mt-4"><strong>Date:</strong> July 13, 2025</p>
+  <p><strong>Time:</strong> 11:30 AM</p>
+  <p><strong>Location:</strong> AVA's Residential House - Bago Grande Subd., Panay, Capiz</p>
+
+  <div class="flex justify-center mt-4" id="motiff">
+    <p class="flex items-center gap-2">
+      <strong>Motiff:</strong>
+      <span class="w-5 h-5 rounded-full" style="background-color: #f5deb3;" title="Light Brown"></span>
+      <span class="w-5 h-5 rounded-full" style="background-color: #a52a2a;" title="Brown"></span>
+      <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
+    </p>
+  </div>
+
+  <!-- Countdown Timer -->
+  <div class="countdown mt-6" id="countdown">
+    <div class="flip-unit"><div class="flip-card-group" id="d1"><div class="flip-inner"><span>0</span></div></div></div>
+    <div class="flip-unit"><div class="flip-card-group" id="d2"><div class="flip-inner"><span>0</span></div></div></div>
+    <div class="flip-unit"><div class="flip-card-group" id="h1"><div class="flip-inner"><span>0</span></div></div></div>
+    <div class="flip-unit"><div class="flip-card-group" id="h2"><div class="flip-inner"><span>0</span></div></div></div>
+    <div class="flip-unit"><div class="flip-card-group" id="m1"><div class="flip-inner"><span>0</span></div></div></div>
+    <div class="flip-unit"><div class="flip-card-group" id="m2"><div class="flip-inner"><span>0</span></div></div></div>
+    <div class="flip-unit"><div class="flip-card-group" id="s1"><div class="flip-inner"><span>0</span></div></div></div>
+    <div class="flip-unit"><div class="flip-card-group" id="s2"><div class="flip-inner"><span>0</span></div></div></div>
+  </div>
+</header>
+
+<!-- Event Gallery -->
+<section id="event" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
+  <h3 class="text-xl font-semibold mb-4">Gallery</h3>
+  <div class="relative w-full overflow-hidden rounded-2xl shadow-md">
+    <div class="carousel relative">
+      <div class="carousel-inner">
+        <img src="/images/ava1.jpg" class="w-full h-auto rounded-2xl" alt="AVA photo">
+        <video class="w-full mt-4 rounded-2xl" controls>
+          <source src="/videos/intro.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
       </div>
     </div>
-    <div id="mobile-menu" class="absolute top-full left-0 w-full md:hidden bg-glass py-4 hidden flex-col space-y-2 text-center rounded-b-2xl">
-      <a href="#home" class="block hover:text-pink-700">Home</a>
-      <a href="#event" class="block hover:text-pink-700">Event</a>
-      <a href="#location" class="block hover:text-pink-700">Location</a>
-      <a href="#motiff" class="block hover:text-pink-700">Motiff</a>
-    </div>
-  </nav>
-  <script>
-    const burger = document.getElementById('burger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    burger.addEventListener('click', () => {
-      if (mobileMenu.classList.contains('hidden')) {
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.classList.add('show');
-      } else {
-        mobileMenu.classList.remove('show');
-        setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-      }
-    });
-  </script>
-  <header id="home" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
-    <h1 class="text-4xl font-bold mb-2">You're Invited!</h1>
-    <h2 class="text-2xl font-semibold">AVA's 2nd Birthday</h2>
-    <p class="mt-4"><strong>Date:</strong> July 13, 2025</p>
-    <p><strong>Time:</strong> 11:30 AM</p>
-    <p><strong>Location:</strong> AVA's Residential House - Bago Grande Subd., Panay, Capiz</p>
-    <div class="flex justify-center mt-4">
-  <p id="motiff" class="flex items-center gap-2">
-    <strong>Motiff:</strong>
-    <span class="w-5 h-5 rounded-full" style="background-color: #f5deb3;" title="Light Brown"></span>
-    <span class="w-5 h-5 rounded-full" style="background-color: #a52a2a;" title="Brown"></span>
-    <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
+  </div>
+</section>
+
+<!-- RSVP -->
+<section class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
+  <h3 class="text-xl font-semibold mb-4">RSVP</h3>
+  <p class="mb-2">Please reserve your seat by filling out the form below:</p>
+  <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="inline-block bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition">RSVP Now</a>
+</section>
+
+<!-- Location Map -->
+<section id="location" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
+  <h3 class="text-xl font-semibold mb-4">How to Get There</h3>
+  <div class="w-full h-72 rounded-2xl shadow-lg">
+    <iframe class="w-full h-full rounded-2xl" 
+      src="https://maps.google.com/maps?q=11.511096,122.772199&z=15&output=embed" 
+      frameborder="0" allowfullscreen></iframe>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
+  <p>Contact us: 
+    <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> 
+    | 09317799007
   </p>
-</div>
-<div class="countdown" id="countdown">
-  <!-- 8 digit boxes -->
-  <div class="flip-unit"><div class="flip-card-group" id="d1"><div class="flip-inner"><span>0</span></div></div></div>
-  <div class="flip-unit"><div class="flip-card-group" id="d2"><div class="flip-inner"><span>0</span></div></div></div>
-  
-  <div class="flip-unit"><div class="flip-card-group" id="h1"><div class="flip-inner"><span>0</span></div></div></div>
-  <div class="flip-unit"><div class="flip-card-group" id="h2"><div class="flip-inner"><span>0</span></div></div></div>
+</footer>
 
-  <div class="flip-unit"><div class="flip-card-group" id="m1"><div class="flip-inner"><span>0</span></div></div></div>
-  <div class="flip-unit"><div class="flip-card-group" id="m2"><div class="flip-inner"><span>0</span></div></div></div>
-
-  <div class="flip-unit"><div class="flip-card-group" id="s1"><div class="flip-inner"><span>0</span></div></div></div>
-  <div class="flip-unit"><div class="flip-card-group" id="s2"><div class="flip-inner"><span>0</span></div></div></div>
-</div>
-  </header>
-  <section id="event" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
-    <h3 class="text-xl font-semibold mb-4">Gallery</h3>
-    <div class="relative w-full overflow-hidden rounded-2xl shadow-md">
-      <div class="carousel relative">
-        <div class="carousel-inner">
-          <img src="/images/ava1.jpg" class="w-full h-auto rounded-2xl" alt="AVA photo">
-          <video class="w-full mt-4 rounded-2xl" controls>
-            <source src="/videos/intro.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </div>
-    </div>
-  </section>
-  <section class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
-    <h3 class="text-xl font-semibold mb-4">RSVP</h3>
-    <p class="mb-2">Please reserve your seat by filling out the form below:</p>
-    <a href="https://forms.gle/YOUR_FORM_ID" target="_blank" class="inline-block bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition">RSVP Now</a>
-  </section>
-  <section id="location" class="max-w-3xl mx-auto px-4 py-6 bg-glass rounded-2xl shadow-md">
-    <h3 class="text-xl font-semibold mb-4">How to Get There</h3>
-    <div class="w-full h-72 rounded-2xl shadow-lg">
-      <iframe class="w-full h-full rounded-2xl" 
-        src="https://maps.google.com/maps?q=11.511096,122.772199&z=15&output=embed" 
-        frameborder="0" allowfullscreen></iframe>
-    </div>
-  </section>
-  <footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
-    <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
-  </footer>
-  <script>
+<!-- Countdown Timer Script -->
+<script>
 function countdownTimer() {
   const targetDate = new Date("July 13, 2025 11:30:00").getTime();
 
