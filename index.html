@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>AVA's 2nd Birthday Invitation</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
@@ -10,22 +10,25 @@
       background: linear-gradient(135deg, #fcd5ce, #fae1dd, #f8edeb);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
+
     .bg-glass {
       background: rgba(255, 255, 255, 0.7);
       backdrop-filter: blur(10px);
     }
+
     #mobile-menu {
       transition: transform 0.3s ease-in-out;
       transform: translateX(-100%);
     }
+
     #mobile-menu.show {
       transform: translateX(0);
     }
 
-    /* Flip Clock Styles */
     .flip-card-group {
       perspective: 1000px;
     }
+
     .flip-inner {
       display: flex;
       flex-direction: column;
@@ -36,6 +39,7 @@
       position: relative;
       height: 100%;
     }
+
     .flip-inner span {
       position: absolute;
       width: 100%;
@@ -51,19 +55,9 @@
       border-radius: 12px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
+
     .flip-inner span:last-child {
       transform: rotateX(180deg);
-    }
-    @keyframes flip {
-      0% {
-        transform: rotateX(0deg);
-      }
-      50% {
-        transform: rotateX(90deg);
-      }
-      100% {
-        transform: rotateX(180deg);
-      }
     }
   </style>
 </head>
@@ -74,7 +68,7 @@
       <div class="text-xl font-bold">AVA's Birthday</div>
       <div class="md:hidden">
         <button id="burger" class="focus:outline-none">
-          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </button>
@@ -83,14 +77,14 @@
         <a href="#home" class="hover:text-pink-700">Home</a>
         <a href="#event" class="hover:text-pink-700">Event</a>
         <a href="#location" class="hover:text-pink-700">Location</a>
-        <a href="#motiff" class="hover:text-pink-700">Motiff</a>
+        <a href="#rsvp" class="hover:text-pink-700">RSVP</a>
       </div>
     </div>
     <div id="mobile-menu" class="absolute top-full left-0 w-full md:hidden bg-glass py-4 hidden flex-col space-y-2 text-center rounded-b-2xl">
       <a href="#home" class="block hover:text-pink-700">Home</a>
       <a href="#event" class="block hover:text-pink-700">Event</a>
       <a href="#location" class="block hover:text-pink-700">Location</a>
-      <a href="#motiff" class="block hover:text-pink-700">Motiff</a>
+      <a href="#rsvp" class="block hover:text-pink-700">RSVP</a>
     </div>
   </nav>
 
@@ -108,119 +102,88 @@
     });
   </script>
 
-  <!-- Countdown Timer Section -->
+  <!-- Event Info and Countdown -->
   <header id="home" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
     <h1 class="text-4xl font-bold mb-2">You're Invited!</h1>
     <h2 class="text-2xl font-semibold">AVA's 2nd Birthday</h2>
     <p class="mt-4"><strong>Date:</strong> July 13, 2025</p>
     <p><strong>Time:</strong> 11:30 AM</p>
     <p><strong>Location:</strong> AVA's Residential House - Bago Grande Subd., Panay, Capiz</p>
+    <p id="motiff" class="flex justify-center mt-4 items-center gap-2">
+      <strong>Motiff:</strong>
+      <span class="w-5 h-5 rounded-full" style="background-color: #f5deb3;" title="Light Brown"></span>
+      <span class="w-5 h-5 rounded-full" style="background-color: #a52a2a;" title="Brown"></span>
+      <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
+    </p>
 
-    <div class="flex justify-center mt-4">
-      <p id="motiff" class="flex items-center gap-2">
-        <strong>Motiff:</strong>
-        <span class="w-5 h-5 rounded-full" style="background-color: #f5deb3;" title="Light Brown"></span>
-        <span class="w-5 h-5 rounded-full" style="background-color: #a52a2a;" title="Brown"></span>
-        <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;" title="Wooden Brown"></span>
-      </p>
-    </div>
-
-    <div id="countdown" class="mt-4 text-lg font-semibold flex justify-center gap-8 flex-wrap">
-      <!-- Countdown Cards -->
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="d1">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
+    <!-- Countdown -->
+    <div id="countdown" class="mt-6 text-lg font-semibold flex justify-center gap-6 flex-wrap">
+      <div class="text-center">
+        <div class="flip-card-group" id="d1"><div class="flip-inner"><span>0</span></div></div>
         <p class="mt-2 text-sm text-gray-600">Days</p>
       </div>
-
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="d2">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
+      <div class="text-center">
+        <div class="flip-card-group" id="h1"><div class="flip-inner"><span>0</span></div></div>
+        <p class="mt-2 text-sm text-gray-600">Hours</p>
       </div>
-
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="h1">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
-        <p class="mt-2 text-sm text-gray-600">Time</p>
-      </div>
-
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="h2">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
-      </div>
-
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="m1">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
+      <div class="text-center">
+        <div class="flip-card-group" id="m1"><div class="flip-inner"><span>0</span></div></div>
         <p class="mt-2 text-sm text-gray-600">Minutes</p>
       </div>
-
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="m2">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
-      </div>
-
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="s1">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
+      <div class="text-center">
+        <div class="flip-card-group" id="s1"><div class="flip-inner"><span>0</span></div></div>
         <p class="mt-2 text-sm text-gray-600">Seconds</p>
-      </div>
-
-      <div class="text-center flip-unit">
-        <div class="flip-card-group" id="s2">
-          <div class="flip-inner"><span>0</span></div>
-        </div>
       </div>
     </div>
   </header>
 
+  <!-- Google Map Section -->
+  <section id="location" class="bg-glass m-4 p-6 rounded-2xl shadow-lg">
+    <h3 class="text-2xl font-semibold text-center mb-4">📍 Location</h3>
+    <div class="w-full h-96">
+      <iframe
+        width="100%"
+        height="100%"
+        style="border:0; border-radius: 12px;"
+        loading="lazy"
+        allowfullscreen
+        src="https://www.google.com/maps/embed/v1/place?q=Bago+Grande+Subdivision,+Panay,+Capiz&key=YOUR_GOOGLE_MAPS_API_KEY">
+      </iframe>
+    </div>
+  </section>
+
+  <!-- RSVP Section -->
+  <section id="rsvp" class="bg-glass m-4 p-6 rounded-2xl shadow-lg">
+    <h3 class="text-2xl font-semibold text-center mb-4">🎉 RSVP Now!</h3>
+    <form class="max-w-xl mx-auto space-y-4">
+      <input type="text" placeholder="Your Name" class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-400" required>
+      <input type="number" placeholder="Number of Guests" class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-400" required>
+      <textarea placeholder="Your Message (optional)" rows="3" class="w-full p-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-pink-400"></textarea>
+      <button type="submit" class="bg-pink-500 hover:bg-pink-600 text-white px-6 py-3 rounded-xl font-semibold shadow-md">Submit RSVP</button>
+    </form>
+  </section>
+
+  <!-- Countdown Script -->
   <script>
     function countdownTimer() {
       const targetDate = new Date("July 13, 2025 11:30:00").getTime();
-
-      const updateTimer = () => {
+      const update = () => {
         const now = new Date().getTime();
-        const distance = targetDate - now;
+        const diff = targetDate - now;
+        if (diff < 0) return;
 
-        if (distance < 0) {
-          clearInterval(timer);
-          document.getElementById("countdown").innerHTML = "🎉 The event has started!";
-          return;
-        }
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / (1000 * 60)) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
 
-        let days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        document.querySelector("#d1 .flip-inner span").textContent = String(days).padStart(2, '0');
+        document.querySelector("#h1 .flip-inner span").textContent = String(hours).padStart(2, '0');
+        document.querySelector("#m1 .flip-inner span").textContent = String(minutes).padStart(2, '0');
+        document.querySelector("#s1 .flip-inner span").textContent = String(seconds).padStart(2, '0');
+      };
 
-        days = String(days).padStart(2, '0');
-        hours = String(hours).padStart(2, '0');
-        minutes = String(minutes).padStart(2, '0');
-        seconds = String(seconds).padStart(2, '0');
-
-        updateUnit('d1', days[0]);
-        updateUnit('d2', days[1]);
-        updateUnit('h1', hours[0]);
-        updateUnit('h2', hours[1]);
-        updateUnit('m1', minutes[0]);
-        updateUnit('m2', minutes[1]);
-        updateUnit('s1', seconds[0]);
-        updateUnit('s2', seconds[1]);
-      }
-
-      const updateUnit = (id, value) => {
-        const element = document.querySelector(`#${id} .flip-inner span`);
-        element.textContent = value;
-      }
-
-      const timer = setInterval(updateTimer, 1000);
+      setInterval(update, 1000);
     }
 
     countdownTimer();
