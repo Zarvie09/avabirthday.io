@@ -10,30 +10,42 @@
 }
 
 .flip-card-group {
-  width: 50px;
-  height: 80px;
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.flip-card {
   background: #fff;
   color: #e11d48; /* Tailwind pink-700 */
   font-size: 2.5rem;
   font-weight: bold;
+  width: 50px;
+  height: 80px;
+  line-height: 80px;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
   position: relative;
 }
 
-.flip-inner {
+.flip-card::before {
+  content: attr(data-prev);
+  position: absolute;
+  top: -100%;
+  width: 100%;
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  transition: transform 0.5s ease-in-out;
-  transform: translateY(0);
+  align-items: center;
+  justify-content: center;
 }
 
-.flip-inner span {
-  height: 80px;
-  line-height: 80px;
-  display: block;
-  text-align: center;
+.flip-card.slide {
+  transition: transform 0.5s ease-in-out;
+  transform: translateY(100%);
 }
 
 .label {
@@ -88,7 +100,6 @@
       <a href="#motiff" class="block hover:text-pink-700">Motiff</a>
     </div>
   </nav>
-
   <script>
     const burger = document.getElementById('burger');
     const mobileMenu = document.getElementById('mobile-menu');
@@ -102,7 +113,6 @@
       }
     });
   </script>
-
   <header id="home" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
     <h1 class="text-4xl font-bold mb-2">You're Invited!</h1>
     <h2 class="text-2xl font-semibold">AVA's 2nd Birthday</h2>
@@ -120,40 +130,29 @@
 <div id="countdown" class="flipTimebox flex gap-4 justify-center">
   <div class="flip-unit">
     <div class="flip-card-group" id="days">
-      <div class="flip-inner">
-        <span>0</span>
-        <span>0</span>
-      </div>
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
     </div>
     <div class="label">Days</div>
   </div>
-
   <div class="flip-unit">
     <div class="flip-card-group" id="hours">
-      <div class="flip-inner">
-        <span>0</span>
-        <span>0</span>
-      </div>
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
     </div>
     <div class="label">Hours</div>
   </div>
-
   <div class="flip-unit">
     <div class="flip-card-group" id="minutes">
-      <div class="flip-inner">
-        <span>0</span>
-        <span>0</span>
-      </div>
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
     </div>
     <div class="label">Minutes</div>
   </div>
-
   <div class="flip-unit">
     <div class="flip-card-group" id="seconds">
-      <div class="flip-inner">
-        <span>0</span>
-        <span>0</span>
-      </div>
+      <div class="flip-card">0</div>
+      <div class="flip-card">0</div>
     </div>
     <div class="label">Seconds</div>
   </div>
@@ -189,7 +188,7 @@
   <footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
     <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
   </footer>
-  <script>
+<script>
 function countdownTimer() {
   const targetDate = new Date("July 13, 2025 11:30:00").getTime();
 
@@ -208,26 +207,26 @@ function countdownTimer() {
       return;
     }
 
-    scrollToDigits("days", days);
-    scrollToDigits("hours", hours);
-    scrollToDigits("minutes", minutes);
-    scrollToDigits("seconds", seconds);
+    slideToDigits("days", days);
+    slideToDigits("hours", hours);
+    slideToDigits("minutes", minutes);
+    slideToDigits("seconds", seconds);
   };
 
-  function scrollToDigits(groupId, value) {
+  function slideToDigits(groupId, value) {
     const group = document.getElementById(groupId);
-    const spans = group.querySelectorAll(".flip-inner span");
-    const inner = group.querySelector(".flip-inner");
-
     const digits = value.toString().padStart(2, "0").split('');
 
-    spans[0].textContent = digits[0];
-    spans[1].textContent = digits[1];
-
-    inner.style.transform = `translateY(-${digits[0] * 80}px)`;
-    setTimeout(() => {
-      inner.style.transform = `translateY(-${digits[1] * 80}px)`;
-    }, 250);
+    group.querySelectorAll(".flip-card").forEach((card, index) => {
+      if (card.innerText !== digits[index]) {
+        card.setAttribute('data-prev', card.innerText); // Set previous number
+        card.innerText = digits[index];
+        card.classList.add("slide");
+        setTimeout(() => {
+          card.classList.remove("slide");
+        }, 500); // match the CSS transition duration
+      }
+    });
   }
 
   updateTimer();
@@ -236,5 +235,6 @@ function countdownTimer() {
 
 window.onload = countdownTimer;
 </script>
+
 </body>
 </html>
