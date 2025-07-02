@@ -112,38 +112,40 @@
       <span class="w-5 h-5 rounded-full" style="background-color: #8b5a2b;"></span>
     </p>
   </div>
-
   <!-- Countdown -->
-  <div id="countdown" class="flipTimebox flex gap-3 justify-center mt-8">
-    <div class="flip-unit">
-      <div class="flip-card-group" id="days">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Days</div>
+<div id="countdown" class="flipTimebox flex gap-3 md:gap-6 justify-center mt-8">
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="days">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
     </div>
-    <div class="flip-unit">
-      <div class="flip-card-group" id="hours">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Hours</div>
-    </div>
-    <div class="flip-unit">
-      <div class="flip-card-group" id="minutes">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Minutes</div>
-    </div>
-    <div class="flip-unit">
-      <div class="flip-card-group" id="seconds">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Seconds</div>
-    </div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Days</div>
   </div>
+
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="hours">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+    </div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Hours</div>
+  </div>
+
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="minutes">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+    </div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Minutes</div>
+  </div>
+
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="seconds">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+    </div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Seconds</div>
+  </div>
+</div>
 </header>
 <!-- Event Gallery -->
 <section id="event" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
@@ -153,7 +155,7 @@
       
       <!-- 🔁 Updated video -->
       <iframe 
-        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        src="https://www.youtube.com/embed/yZMZ470sR58" 
         class="w-full h-72 rounded-xl shadow-md flex-shrink-0"
         allow="autoplay; encrypted-media"
         allowfullscreen>
