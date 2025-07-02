@@ -33,7 +33,7 @@
     .flip-card {
       background: #fff;
       color: #e11d48;
-      font-size: 2.5rem;
+      font-size: 12px; /* Or adjust to 10px, 14px, etc. */
       font-weight: bold;
       width: 50px;
       height: 80px;
@@ -51,7 +51,7 @@
     }
 
     .label {
-      font-size: 0.9rem;
+      font-size: 10px;
       color: #555;
     }
 
@@ -113,37 +113,37 @@
     </p>
   </div>
 
-  <!-- Countdown -->
-  <div id="countdown" class="flipTimebox flex gap-3 justify-center mt-8">
-    <div class="flip-unit">
-      <div class="flip-card-group" id="days">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Days</div>
+<!-- Countdown -->
+<div id="countdown" class="flipTimebox flex gap-3 justify-center mt-8 text-xs">
+  <div class="flip-unit">
+    <div class="flip-card-group" id="days">
+      <div class="flip-card text-sm">0</div>
+      <div class="flip-card text-sm">0</div>
     </div>
-    <div class="flip-unit">
-      <div class="flip-card-group" id="hours">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Hours</div>
-    </div>
-    <div class="flip-unit">
-      <div class="flip-card-group" id="minutes">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Minutes</div>
-    </div>
-    <div class="flip-unit">
-      <div class="flip-card-group" id="seconds">
-        <div class="flip-card">0</div>
-        <div class="flip-card">0</div>
-      </div>
-      <div class="label">Seconds</div>
-    </div>
+    <div class="label text-[10px]">Days</div>
   </div>
+  <div class="flip-unit">
+    <div class="flip-card-group" id="hours">
+      <div class="flip-card text-sm">0</div>
+      <div class="flip-card text-sm">0</div>
+    </div>
+    <div class="label text-[10px]">Hours</div>
+  </div>
+  <div class="flip-unit">
+    <div class="flip-card-group" id="minutes">
+      <div class="flip-card text-sm">0</div>
+      <div class="flip-card text-sm">0</div>
+    </div>
+    <div class="label text-[10px]">Minutes</div>
+  </div>
+  <div class="flip-unit">
+    <div class="flip-card-group" id="seconds">
+      <div class="flip-card text-sm">0</div>
+      <div class="flip-card text-sm">0</div>
+    </div>
+    <div class="label text-[10px]">Seconds</div>
+  </div>
+</div>
 </header>
 
 <!-- Event Gallery -->
