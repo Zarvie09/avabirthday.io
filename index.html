@@ -199,10 +199,8 @@
 <footer class="text-center p-4 bg-glass mt-8 rounded-t-2xl">
   <p>Contact us: <a href="mailto:delatorremylyn22@gmail.com" class="text-blue-600 underline">delatorremylyn22@gmail.com</a> | 09317799007</p>
 </footer>
-
 <!-- Scripts -->
 <script>
-  // 🍔 Burger Menu Toggle
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobile-menu');
   burger.addEventListener('click', () => {
@@ -215,30 +213,26 @@
     }
   });
 
-  // 🎥 Video Carousel Logic
   const carousel = document.getElementById('carousel-images');
-  const slides = carousel.querySelectorAll('iframe'); // targets <iframe> video slides
-  const totalSlides = slides.length;
+  const images = carousel.querySelectorAll('img');
+  const totalImages = images.length;
   let index = 0;
 
   document.getElementById('prev').addEventListener('click', () => {
-    index = (index - 1 + totalSlides) % totalSlides;
-    carousel.style.transform = `translateX(-${index * 100}%)`;
+    index = (index - 1 + totalImages) % totalImages;
+    carousel.style.transform = translateX(-${index * 100}%);
   });
 
   document.getElementById('next').addEventListener('click', () => {
-    index = (index + 1) % totalSlides;
-    carousel.style.transform = `translateX(-${index * 100}%)`;
+    index = (index + 1) % totalImages;
+    carousel.style.transform = translateX(-${index * 100}%);
   });
 
-  // ⏳ Countdown Timer with Flip Effect
   function countdownTimer() {
     const targetDate = new Date("July 13, 2025 11:30:00").getTime();
-
     const updateTimer = () => {
       const now = new Date().getTime();
       const distance = targetDate - now;
-
       if (distance < 0) {
         clearInterval(timer);
         document.getElementById("countdown").innerHTML = "🎉 The event has started!";
@@ -269,14 +263,10 @@
         }
       });
     }
-
     updateTimer();
     const timer = setInterval(updateTimer, 1000);
   }
-
-  // 🚀 Run countdown on page load
   window.onload = countdownTimer;
 </script>
-
 </body>
 </html>
