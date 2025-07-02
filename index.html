@@ -148,35 +148,28 @@
   </div>
 </div>
 </header>
-<section id="video-gallery" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
+<!-- Event Gallery -->
+<section id="event" class="text-center py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
   <h3 class="text-xl font-semibold mb-4">Video Gallery</h3>
-
   <div class="relative w-full max-w-2xl mx-auto overflow-hidden rounded-2xl shadow-md">
-    <div class="flex transition-transform duration-500 ease-in-out" id="video-carousel" style="width: 300%; transform: translateX(0%);">
-      <!-- Video 1 -->
+    <div class="flex transition-transform duration-500 ease-in-out" id="carousel-images">
+      
+      <!-- 🔁 Updated video -->
       <iframe 
-        src="https://www.youtube.com/embed/yZMZ470sR58" 
-        class="w-full h-72 flex-shrink-0 rounded-xl" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen></iframe>
-      <!-- Video 2 -->
-      <iframe 
-        src="https://www.youtube.com/embed/okn1r-6vc5k" 
-        class="w-full h-72 flex-shrink-0 rounded-xl" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen></iframe>
-      <!-- Video 3 -->
-      <iframe 
-        src="https://www.youtube.com/embed/aOXDnAhxATU" 
-        class="w-full h-72 flex-shrink-0 rounded-xl" 
-        allow="autoplay; encrypted-media" 
-        allowfullscreen></iframe>
+        src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+        class="w-full h-72 rounded-xl shadow-md flex-shrink-0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen>
+      </iframe>
+      
+      <img src="https://wallpapercave.com/wp/wp9326243.jpg" class="w-full flex-shrink-0" alt="Dora 1"/>
+      <img src="https://wallpapercave.com/wp/wp9045392.jpg" class="w-full flex-shrink-0" alt="Dora 2"/>
     </div>
-    <!-- Buttons -->
-    <button id="prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-white bg-opacity-60 rounded-full p-2 z-10">‹</button>
-    <button id="next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-white bg-opacity-60 rounded-full p-2 z-10">›</button>
+
+    <button id="prev" class="absolute top-1/2 left-4 -translate-y-1/2 bg-white bg-opacity-60 rounded-full p-2">‹</button>
+    <button id="next" class="absolute top-1/2 right-4 -translate-y-1/2 bg-white bg-opacity-60 rounded-full p-2">›</button>
   </div>
-  <p class="text-sm text-gray-500 mt-4">Click arrows to navigate through the videos</p>
+  <p class="text-sm text-gray-500 mt-4">Click arrows to navigate through the gallery</p>
 </section>
 <!-- RSVP -->
 <section class="text-left py-10 px-4 bg-glass rounded-2xl m-4 shadow-lg">
