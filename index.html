@@ -33,7 +33,7 @@
     .flip-card {
       background: #fff;
       color: #e11d48;
-      font-size: 12px; /* Or adjust to 10px, 14px, etc. */
+      font-size: 2.5rem;
       font-weight: bold;
       width: 50px;
       height: 80px;
@@ -51,7 +51,7 @@
     }
 
     .label {
-      font-size: 10px;
+      font-size: 1rem;
       color: #555;
     }
 
@@ -114,34 +114,37 @@
   </div>
 
 <!-- Countdown -->
-<div id="countdown" class="flipTimebox flex gap-3 justify-center mt-8 text-xs">
-  <div class="flip-unit">
-    <div class="flip-card-group" id="days">
-      <div class="flip-card text-sm">0</div>
-      <div class="flip-card text-sm">0</div>
+<div id="countdown" class="flipTimebox flex gap-3 md:gap-6 justify-center mt-8">
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="days">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
     </div>
-    <div class="label text-[10px]">Days</div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Days</div>
   </div>
-  <div class="flip-unit">
-    <div class="flip-card-group" id="hours">
-      <div class="flip-card text-sm">0</div>
-      <div class="flip-card text-sm">0</div>
+
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="hours">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
     </div>
-    <div class="label text-[10px]">Hours</div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Hours</div>
   </div>
-  <div class="flip-unit">
-    <div class="flip-card-group" id="minutes">
-      <div class="flip-card text-sm">0</div>
-      <div class="flip-card text-sm">0</div>
+
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="minutes">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
     </div>
-    <div class="label text-[10px]">Minutes</div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Minutes</div>
   </div>
-  <div class="flip-unit">
-    <div class="flip-card-group" id="seconds">
-      <div class="flip-card text-sm">0</div>
-      <div class="flip-card text-sm">0</div>
+
+  <div class="flip-unit text-center">
+    <div class="flip-card-group flex" id="seconds">
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
+      <div class="flip-card w-8 h-12 md:w-12 md:h-16 flex items-center justify-center text-2xl md:text-3xl font-bold bg-white rounded-lg md:rounded-xl shadow-md">0</div>
     </div>
-    <div class="label text-[10px]">Seconds</div>
+    <div class="label mt-1 md:mt-2 text-xs md:text-sm text-gray-500">Seconds</div>
   </div>
 </div>
 </header>
